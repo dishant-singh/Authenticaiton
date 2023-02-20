@@ -67,7 +67,7 @@ passport.serializeUser(function(user, cb) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/secrets",
+    callbackURL: `${process.env.RAILWAY_STATIC_URL}/auth/google/secrets`,
     userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
     
 },
@@ -181,7 +181,7 @@ app.post("/login", function(req, res){
 });
 
 // Use port from env when it's available, usually on servers
-// SAAS Servers usually store it's open port in this environment variable
+// SAAS Servers usually store it's public port in this environment variable
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, function(){
