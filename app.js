@@ -29,7 +29,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/userDB",{useNewUrlParser: true});
+const DB_URI = process.env.DB_URI || "mongodb://localhost:27017/userDB";
+
+mongoose.connect(DB_URI, {useNewUrlParser: true});
 // mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema ({
@@ -178,7 +180,10 @@ app.post("/login", function(req, res){
     })
 });
 
+// Use port from env when it's available, usually on servers
+// SAAS Servers usually store it's open port in this environment variable
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000, function(){
+app.listen(PORT, function(){
     console.log("Server is started on port 3000...");
 });
