@@ -67,7 +67,7 @@ passport.serializeUser(function(user, cb) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: `${process.env.RAILWAY_STATIC_URL}/auth/google/secrets`,
+    callbackURL: `${process.env.RAILWAY_STATIC_URL || 'localhost:3000'}/auth/google/secrets}/auth/google/secrets`,
     userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
     
 },
